@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAIUX Admin Dashboard</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f0f2f5;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .actions {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    button {
+      margin: 8px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .logout {
+      background-color: #dc3545;
+    }
+
+    .logout:hover {
+      background-color: #b52a37;
+    }
+
+    #output {
+      margin-top: 20px;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- 🔒 BLOCK ACCESS IF NOT LOGGED IN -->
+<script>
+  if (!localStorage.getItem("adminToken")) {
+    window.location.href = "admin-login.html";
+  }
+</script>
+
+<h1>SAIUX Admin Dashboard</h1>
+
+<div class="actions">
+  <button onclick="loadContacts()">View Contacts</button>
+  <button onclick="exportToExcel()">Export to Excel</button>
+  <button onclick="exportCSV()">Export CSV</button>
+<button onclick="exportPDF()">Export PDF</button>
+  <button class="logout" onclick="logout()">Logout</button>
+
+</div>
+
+<div id="output">Click <b>View Contacts</b> to load data.</div>
+
+<script>
+  /* ================= CONFIG ================= */
+  // API URL - automatically switches between local and production
+  const API_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:5000' 
+    : 'https://YOUR-BACKEND-NAME.onrender.com';  // Replace after deployment
+  const token = localStorage.getItem("adminToken");
+
+  /* ============= LOAD CONTACTS ============== */
+  async function loadContacts() {
+    const output = document.getElementById("output");
+    output.innerHTML = "Loading contacts...";
+
+    try {
+      const res = await fetch(`${API_URL}/api/admin/contacts`, {
+        headers: {
+          "Authorization": token
+        }
+      });
+
+      if (res.status === 401) {
+        alert("Session expired. Please login again.");
+        logout();
+        return;
+      }
+
+      if (!res.ok) {
+        output.innerHTML = "❌ Server error";
+        return;
+      }
+
+      const data = await res.json();
+
+      if (!Array.isArray(data) || data.length === 0) {
+        output.innerHTML = "<p>No contacts found.</p>";
+        return;
+      }
+
+      let html = `
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Message</th>
+            <th>Date</th>
+          </tr>
+      `;
+
+      data.forEach(item => {
+        html += `
+          <tr>
+            <td>${item.name || "-"}</td>
+            <td>${item.phone || "-"}</td>
+            <td>${item.email || "-"}</td>
+            <td>${item.message || "-"}</td>
+            <td>${new Date(item.createdAt).toLocaleString()}</td>
+          </tr>
+        `;
+      });
+
+      html += "</table>";
+      output.innerHTML = html;
+
+    } catch (err) {
+      console.error(err);
+      output.innerHTML = "❌ Cannot connect to backend";
+    }
+  }
+
+  /* ============= EXPORT TO EXCEL ============== */
+  async function exportToExcel() {
+    try {
+      const res = await fetch(`${API_URL}/api/admin/export`, {
+        headers: {
+          "Authorization": token
+        }
+      });
+
+      if (res.status === 401) {
+        alert("Session expired. Please login again.");
+        logout();
+        return;
+      }
+
+      if (!res.ok) {
+        alert("❌ Export failed");
+        return;
+      }
+
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "contacts.xlsx";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      window.URL.revokeObjectURL(url);
+
+    } catch (err) {
+      console.error(err);
+      alert("❌ Cannot connect to backend");
+    }
+  }
+
+  /* ============= LOGOUT ============== */
+  function logout() {
+    localStorage.removeItem("adminToken");
+    window.location.href = "admin-login.html";
+  }
+</script>
+<script>
+  /* ============= EXPORT CSV ============== */
+  async function exportCSV() {
+    try {
+      const res = await fetch(`${API_URL}/api/admin/export/csv`, {
+        headers: {
+          "Authorization": token
+        }
+      });
+
+      if (res.status === 401) {
+        alert("Session expired. Please login again.");
+        logout();
+        return;
+      }
+
+      if (!res.ok) {
+        alert("❌ CSV export failed");
+        return;
+      }
+
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "contacts.csv";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      window.URL.revokeObjectURL(url);
+
+    } catch (err) {
+      console.error(err);
+      alert("❌ Cannot connect to backend");
+    }
+  }
+
+  /* ============= EXPORT PDF ============== */
+  async function exportPDF() {
+    try {
+      const res = await fetch(`${API_URL}/api/admin/export/pdf`, {
+        headers: {
+          "Authorization": token
+        }
+      });
+
+      if (res.status === 401) {
+        alert("Session expired. Please login again.");
+        logout();
+        return;
+      }
+
+      if (!res.ok) {
+        alert("❌ PDF export failed");
+        return;
+      }
+
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "contacts.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      window.URL.revokeObjectURL(url);
+
+    } catch (err) {
+      console.error(err);
+      alert("❌ Cannot connect to backend");
+    }
+  }
+</script>
+
+
+
+</body>
+</html>

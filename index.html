@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saiux Tech | AI Innovation & Digital Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0b0e14; scroll-behavior: smooth; color: white; }
+        .dark-bg { background-color: #0b0e14; }
+        
+        /* Glassmorphism Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        /* Animated Background Canvas */
+        #network-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        .whatsapp-float {
+            position: fixed; bottom: 30px; right: 30px; background-color: #25d366;
+            color: white; padding: 15px; border-radius: 50px; z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: 0.3s;
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+        
+        .hero-gradient {
+            background: radial-gradient(circle at center, rgba(59, 130, 246, 0.1) 0%, rgba(11, 14, 20, 1) 70%);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <canvas id="network-canvas"></canvas>
+
+    <a href="https://wa.me/8019016777" class="whatsapp-float" target="_blank">💬 Chat with us</a>
+
+    <nav class="flex items-center justify-between px-6 md:px-12 py-5 sticky top-0 bg-black/80 backdrop-blur-md z-50 border-b border-white/10">
+
+  <!-- Logo + Brand -->
+  <div class="flex items-center gap-3">
+    <img 
+      src="https://image2url.com/r2/default/images/1768672340155-0a1b4f87-0e9c-41f5-a16a-b53c7d9ea267.png" 
+      alt="Logo" 
+      class="h-14 md:h-20 w-auto"
+    />
+
+    <div class="flex flex-col leading-none">
+      <span class="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-[#FFD700] via-[#FF8A00] to-[#FF2D85] bg-clip-text text-transparent">
+        SAIUX
+      </span>
+      <span class="text-[11px] md:text-xs text-white-400 tracking-widest">
+        TECH PVT LTD
+      </span>
+    </div>
+  </div>
+
+  <!-- Navigation Links -->
+  <div class="hidden md:flex space-x-8 text-sm uppercase font-bold">
+    <a href="#" class="hover:text-blue-400 transition">Home</a>
+    <a href="#about" class="hover:text-blue-400 transition">About Us</a>
+    <a href="#services" class="hover:text-blue-400 transition">Services</a>
+    <a href="#industries" class="hover:text-blue-400 transition">Industries</a>
+    <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
+  </div>
+
+  <!-- CTA Button -->
+  <a 
+    href="https://login.saiux.com/u/75029/standard-calender"
+    class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-bold transition inline-block"
+  >
+    Book Appointment
+  </a>
+
+</nav>
+
+
+    <header class="hero-transparent min-h-[90vh] flex flex-col items-center justify-center text-center px-4">
+      
+        <div data-aos="fade-up" class="bg-transparent/10 px-4 py-1 rounded-full text-xs mb-6 border border-white/20">🚀 Next-Gen AI & UX Solutions</div>
+<h1 data-aos="fade-up" data-aos-delay="100" 
+    class="text-5xl md:text-7xl font-bold mb-6 tracking-tight bg-gradient-to-r from-[#00D1FF] via-[#0060FF] to-[#FF2D85] bg-clip-text text-transparent">
+  AI Innovation Designed <br>
+  for Humans
+</h1>
+        <p data-aos="fade-up" data-aos-delay="200" class="max-w-2xl text-white-400 text-lg mb-10">Technology that understands people — built with intelligence, designed with empathy.</p>
+        <div data-aos="fade-up" data-aos-delay="300" class="flex space-x-4">
+            <button class="bg-blue-600 px-8 py-3 rounded-md font-bold hover:bg-blue-700 transition"> <a href="#services" class="hover:text-blue-400 transition"> Explore Services</a></button>
+
+            <button class="border border-white/20 px-8 py-3 rounded-md font-bold hover:bg-white/10 transition"><a href="#Portfolio" class="hover:text-blue-400 transition"> Explore Portfolio</a></button>
+        </div>
+    </header>
+        <div class="max-w-6xl mx-auto text-center">
+           
+            </h2>
+            <p data-aos="fade-up" class="text-xl text-gray-300 max-w-4xl mx-auto mb-16 leading-relaxed">
+                Discover the innovative projects we've delivered across various industries, showcasing our expertise in AI and UX design.
+            </p>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+           <h2 data-aos="fade-up" 
+    class="text-4xl md:text-6xl font-bold mb-8 bg-gradient-to-r from-[#00D1FF] via-[#0060FF] to-[#FF2D85] bg-clip-text text-transparent">
+  Who We Are
+</h2>
+            <p data-aos="fade-up" class="text-xl text-gray-300 max-w-4xl mx-auto mb-16 leading-relaxed">
+                SAIUX Pvt Ltd is a new-age technology company that approaches AI differently. 
+                We bridge the gap between complex intelligence systems and human-centered design, 
+                creating digital solutions that truly engage people.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
+                <div data-aos="fade-right" class="glass-card p-10 rounded-2xl text-left">
+                    <h3 class="text-2xl font-bold text-blue-400 mb-4">Our Vision</h3>
+                    <p class="text-white-400">To empower organizations worldwide with AI + UX solutions that deliver meaningful impact and sustainable growth.</p>
+                </div>
+                <div data-aos="fade-left" class="glass-card p-10 rounded-2xl text-left">
+                    <h3 class="text-2xl font-bold text-purple-400 mb-4">Our Mission</h3>
+                    <p class="text-white-400">To make advanced technology accessible, usable, and profitable for every business through automation, voice-based interfaces, and powerful digital branding.</p>
+                </div>
+            </div>
+
+           <h3 data-aos="fade-up" 
+    class="text-3xl font-bold mb-12 bg-gradient-to-r from-[#00D1FF] via-[#0060FF] to-[#FF2D85] bg-clip-text text-transparent">
+  Our Values
+</h3>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div data-aos="zoom-in" class="glass-card p-6 rounded-2xl flex flex-col items-center">
+
+                    <div class="w-12 h-12 mb-4 text-blue-400">💡</div>
+                    <h4 class="font-bold text-lg">Innovation</h4>
+                    <p class="text-gray-500 text-sm mt-2 italic text-center">Never settle — always elevate</p>
+                </div>
+                <div data-aos="zoom-in"  class="glass-card p-6 rounded-2xl flex flex-col items-center">
+                    <div class="w-12 h-12 mb-4 text-blue-400">👤</div>
+                    <h4 class="font-bold text-lg">User-Centricity</h4>
+                    <p class="text-gray-500 text-sm mt-2 italic text-center">People first, technology second</p>
+                </div>
+                <div data-aos="zoom-in"  class="glass-card p-6 rounded-2xl flex flex-col items-center">
+                    <div class="w-12 h-12 mb-4 text-blue-400">🛡️</div>
+                    <h4 class="font-bold text-lg">Integrity</h4>
+                    <p class="text-gray-500 text-sm mt-2 italic text-center">Honest delivery and transparent communication</p>
+                </div>
+                <div data-aos="zoom-in"  class="glass-card p-6 rounded-2xl flex flex-col items-center">
+                    <div class="w-12 h-12 mb-4 text-blue-400">⭐</div>
+                    <h4 class="font-bold text-lg">Excellence</h4>
+                    <p class="text-gray-500 text-sm mt-2 italic text-center">Quality without compromise</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="industries" class="py-24 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 data-aos="fade-up" class="text-4xl font-bold mb-4 text-blue-400">Industries We Serve</h2>
+            <p data-aos="fade-up" class="text-gray-400 mb-16 max-w-2xl mx-auto">We proudly deliver solutions for diverse sectors, adapting to your scale and ambition.</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div data-aos="fade-up" class="glass-card p-10 rounded-xl flex flex-col items-center">
+                    <span class="text-4xl mb-4">💻</span>
+                    <span class="font-semibold">IT & SaaS</span>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="50" class="glass-card p-10 rounded-xl flex flex-col items-center">
+                    <span class="text-4xl mb-4">❤️</span>
+                    <span class="font-semibold">Healthcare</span>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="100" class="glass-card p-10 rounded-xl flex flex-col items-center">
+                    <span class="text-4xl mb-4">💰</span>
+                    <span class="font-semibold">Financial Services</span>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="150" class="glass-card p-10 rounded-xl flex flex-col items-center">
+                    <span class="text-4xl mb-4">🛍️</span>
+                    <span class="font-semibold">Retail & E-commerce</span>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="200" class="glass-card p-10 rounded-xl flex flex-col items-center">
+                    <span class="text-4xl mb-4">🏠</span>
+                    <span class="font-semibold">Real Estate</span>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="250" class="glass-card p-10 rounded-xl flex flex-col items-center">
+                    <span class="text-4xl mb-4">🎓</span>
+                    <span class="font-semibold">Education</span>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="300" class="glass-card p-10 rounded-xl flex flex-col items-center">
+                    <span class="text-4xl mb-4">✈️</span>
+                    <span class="font-semibold">Hospitality & Travel</span>
+                </div>
+                <div data-aos="fade-up" data-aos-delay="350" class="glass-card p-10 rounded-xl flex flex-col items-center">
+                    <span class="text-4xl mb-4">📦</span>
+                    <span class="font-semibold">Manufacturing</span>
+                </div>
+            </div>
+          <section id="services" class="py-24 px-6 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 data-aos="fade-up" 
+    class="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-[#00D1FF] via-[#0060FF] to-[#FF2D85] bg-clip-text text-transparent">
+  Our SaaS Solutions
+</h2>
+                <p data-aos="fade-up" data-aos-delay="100" class="text-gray-400 max-w-2xl mx-auto">
+                    Cutting-edge software products designed to scale your business and automate your workflow.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div data-aos="zoom-in" class="glass-card p-8 rounded-2xl">
+                    <div class="w-14 h-14 bg-blue-500/20 flex items-center justify-center rounded-xl mb-6">
+                        <span class="text-3xl">📺</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3"><a href="https://saas.saiux.com/ott" class="text-white-500 hover:underline">OTT SERVICES</a></h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Comprehensive over-the-top media solutions. Stream movies, live TV, and original content across all devices with our robust infrastructure.
+                    </p>
+                </div>
+
+                <div data-aos="zoom-in" data-aos-delay="100" class="glass-card p-8 rounded-2xl">
+                    <div class="w-14 h-14 bg-green-500/20 flex items-center justify-center rounded-xl mb-6">
+                        <span class="text-3xl">💬</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">WhatsApp API & Automation</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Scale your customer support and marketing. Automated messaging, chatbot integration, and CRM sync for high-engagement communication.
+                    </p>
+                </div>
+
+                <div data-aos="zoom-in" data-aos-delay="200" class="glass-card p-8 rounded-2xl">
+                    <div class="w-14 h-14 bg-purple-500/20 flex items-center justify-center rounded-xl mb-6">
+                        <span class="text-3xl">📦</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Software Reselling</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Get access to premium licensed software tools. We provide the licenses and the technical support you need to run your business smoothly.
+                    </p>
+                </div>
+
+                <div data-aos="zoom-in" data-aos-delay="300" class="glass-card p-8 rounded-2xl">
+                    <div class="w-14 h-14 bg-red-500/20 flex items-center justify-center rounded-xl mb-6">
+                        <span class="text-3xl">🎙️</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Podcast Solutions</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        End-to-end digital audio production. From recording setups to distribution across global platforms, we help your voice reach millions.
+                    </p>
+                </div>
+
+                <div data-aos="zoom-in" data-aos-delay="400" class="glass-card p-8 rounded-2xl">
+                    <div class="w-14 h-14 bg-yellow-500/20 flex items-center justify-center rounded-xl mb-6">
+                        <span class="text-3xl">📈</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Digital Marketing</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Data-driven growth strategies. We manage SEO, social media advertising, and performance analytics to convert your traffic into revenue.
+                    </p>
+                </div>
+
+                <div data-aos="zoom-in" data-aos-delay="500" class="glass-card p-8 rounded-2xl">
+                    <div class="w-14 h-14 bg-cyan-500/20 flex items-center justify-center rounded-xl mb-6">
+                        <span class="text-3xl">🤖</span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3"><a href="https://saas.saiux.com/services" class="text-white-500 hover:underline">Solutions as Services</a></h3>
+                    <p class="text-gray-400 leading-relaxed">
+                       Software solutions and services provide digital tools that automate processes, improve efficiency, enhance productivity, 
+and support business growth through technology.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+            <p class="mt-12 text-white-500 italic">Whether your organization is local, national, or global — SAIUX adapts to your scale and ambition.</p>
+        </div>
+    </section>
+
+
+
+
+  
+           <section id="Portfolio" class="py-24 px-6 bg-[#0a0816]">
+  <div class="max-w-6xl mx-auto space-y-28">
+
+    <!-- CEO -->
+    <div
+      data-aos="fade-up"
+      class="glass-card p-10 rounded-3xl grid grid-cols-1 md:grid-cols-[280px_1fr] gap-10 items-center"
+    >
+      <!-- Image -->
+      <div class="flex justify-center md:justify-start">
+        <div class="w-56 h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-blue-500/30">
+          <img
+            src="https://image2url.com/r2/default/images/1768705467580-90bbe45f-4a6b-4dde-bbf2-9f537dc8d792.png"
+            alt="CEO Chaitanya"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="text-center md:text-left max-w-2xl">
+        <span
+          class="inline-block mb-3 bg-blue-600/20 text-blue-400 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+        >
+          Meet Our CEO
+        </span>
+
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+          Chaitanya is Building the Future of SaaS Entrepreneurship
+        </h2>
+
+        <p class="text-gray-400 leading-relaxed text-lg">
+         A highly driven Computer Science graduate currently serving as the CEO of SAIUX Tech Pvt. Ltd., he empowers startups, entrepreneurs, digital marketers, freelancers, and agencies to move away from traditional, manual processes and adopt automation-driven solutions. Through innovative Software as a Service (SaaS) offerings, SAIUX helps businesses deliver superior customer experiences and operate more efficiently.
+At SAIUX, the primary focus is on speed, performance, and customized solutions that drive revenue growth while equipping clients with cutting-edge technologies.
+        </p>
+      </div>
+    </div>
+
+    <!-- CTO -->
+    <div
+      data-aos="fade-up"
+      data-aos-delay="100"
+      class="glass-card p-10 rounded-3xl grid grid-cols-1 md:grid-cols-[1fr_280px] gap-10 items-center"
+    >
+      <!-- Text -->
+      <div class="text-center md:text-left max-w-2xl order-2 md:order-1">
+        <span
+          class="inline-block mb-3 bg-purple-600/20 text-purple-400 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+        >
+          Meet Our CTO
+        </span>
+
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+          Prasanna is Building the Future of SaaS Entrepreneurship
+        </h2>
+
+        <p class="text-gray-400 leading-relaxed text-lg">
+         A highly driven Computer Science graduate currently serving as the CTO of SAIUX Tech Pvt. Ltd., she is empowering thousands of digital marketers, freelancers, and agencies to shift from project-based work to sustainable, recurring income through Software as a Service (SaaS) solutions.
+At SAIUX, the focus is on enabling clients to enhance performance and boost revenue by leveraging fast, automated, and scalable solutions built with cutting-edge technologies.
+        </p>
+      </div>
+
+      <!-- Image -->
+      <div class="flex justify-center md:justify-end order-1 md:order-2">
+        <div class="w-56 h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-purple-500/30">
+          <img
+            src="https://image2url.com/r2/default/images/1768705428019-110b1eb6-c83e-4eae-bd39-dc61ff216cb8.jpeg"
+            alt="CTO Prasanna"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+           </section>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                <div class="glass-card p-8 rounded-3xl text-center" data-aos="zoom-in">
+                    <div class="text-blue-500 text-3xl mb-4"><i class="fas fa-users"></i></div>
+                    <div class="text-3xl md:text-4xl font-bold mb-1">10,000+</div>
+                    <div class="text-gray-500 text-sm uppercase font-semibold">Active Users</div>
+                </div>
+                <div class="glass-card p-8 rounded-3xl text-center" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="text-blue-500 text-3xl mb-4"><i class="fas fa-bolt"></i></div>
+                    <div class="text-3xl md:text-4xl font-bold mb-1">4+</div>
+                    <div class="text-gray-500 text-sm uppercase font-semibold">Active Platforms</div>
+                </div>
+                <div class="glass-card p-8 rounded-3xl text-center" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="text-blue-500 text-3xl mb-4"><i class="fas fa-bullseye"></i></div>
+                    <div class="text-3xl md:text-4xl font-bold mb-1">1M</div>
+                    <div class="text-gray-500 text-sm uppercase font-semibold">SaaS Entrepreneur Goal</div>
+                </div>
+                <div class="glass-card p-8 rounded-3xl text-center" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="text-blue-500 text-3xl mb-4"><i class="fas fa-rocket"></i></div>
+                    <div class="text-3xl md:text-4xl font-bold mb-1">4+</div>
+                    <div class="text-gray-500 text-sm uppercase font-semibold">Years Experience</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+  <section id="testimonials" class="py-24 bg-teansparent-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-blue-600 font-bold uppercase tracking-widest text-[30px]">Testimonials</span>
+                <h2 class="text-4xl md:text-6xl font-extrabold text-white mt-2">What others are saying</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-transparent p-6 rounded-xl shadow-lg border border-white-100 flex flex-col items-center text-center" data-aos="fade-up">
+                    <img src="https://image2url.com/r2/default/images/1768727416766-8ff03a9d-5849-4d54-abb8-905e5596a475.jpg?ga=GA1.1.1871252651.1725688377&semt=aisalt" alt="Sai Krishna" class="w-20 h-20 rounded-full mb-6 object-cover">
+                    <p class="text-white-500 leading-relaxed italic mb-4">
+                        “SAIUX offers a smooth and reliable subscription experience. The process was simple from start to finish, and everything was clearly explained. It’s a well-built platform that genuinely focuses on user convenience and value.”
+                    </p>
+                    <h4 class="text-white-900 font-bold text-lg">- Sai Krishna</h4>
+                    <div class="flex text-yellow-400 mt-2">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="bg-transparent p-10 rounded-xl shadow-lg border border-white-100 flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://image2url.com/r2/default/images/1768727546965-e64a579d-9e79-48b2-a0ec-377c20e3d00c.jpg" alt="Venu" class="w-20 h-20 rounded-full mb-6 object-cover">
+                    <p class="text-white-500 leading-relaxed italic mb-6">
+                        “I was initially cautious, but SAIUX exceeded my expectations. The subscriptions were activated quickly, and the service felt completely legitimate. Pricing is fair, and the platform delivers exactly what it promises.”
+                    </p>
+                    <h4 class="text-white-900 font-bold text-lg">- Venu</h4>
+                    <div class="flex text-yellow-400 mt-2">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="bg-transparent p-10 rounded-xl shadow-lg border border-gray-100 flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="200">
+                    <img src=https://image2url.com/r2/default/images/1768727851393-5fb4b8f3-ff24-478b-92e3-fe995f8d184d.jpg alt="Suresh Kumar" class="w-20 h-20 rounded-full mb-6 object-cover">
+                    <p class="text-white-500 leading-relaxed italic mb-6">
+                        “Managing multiple subscriptions used to be frustrating. With SAIUX, everything is organized in one dashboard, making it easy to track and manage. It’s efficient, secure, and very user-friendly.”
+                    </p>
+                    <h4 class="text-white-900 font-bold text-lg">- Suresh Kumar</h4>
+                    <div class="flex text-yellow-400 mt-2">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="bg-transparent p-10 rounded-xl shadow-lg border border-white-100 flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://image2url.com/r2/default/images/1768727928192-ddfca683-0cb7-4b9c-9ab1-ab46c8de7c3b.jpg" alt="Your Name" class="w-20 h-20 rounded-full mb-6 object-cover">
+                    <p class="text-white-500 leading-relaxed italic mb-6">
+                        “Great experience overall. The interface is modern, the checkout process is smooth, and the support team is helpful. SAIUX feels like a premium service built with attention to detail.”
+                    </p>
+                    <h4 class="text-white-900 font-bold text-lg">- RAMESH</h4>
+                    <div class="flex text-yellow-400 mt-2">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  <section id="contact" class="py-24 px-6 relative overflow-hidden bg-[#1a0b2e]">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <h2 data-aos="fade-up" class="text-4xl md:text-5xl font-bold text-white mb-4">Let's Build Your Intelligent Future</h2>
+                <p data-aos="fade-up" data-aos-delay="100" class="text-gray-400">Whether you are starting your digital journey or scaling exponentially — we are ready to support your goals.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 glass-card p-8 md:p-12 rounded-3xl" data-aos="fade-right">
+                  
+                  
+                  
+                    <form id="contactForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+  <div class="flex flex-col">
+    <label class="text-sm text-gray-300 mb-2 font-medium">Name *</label>
+    <input id="contactName" type="text" placeholder="Your name"
+           class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+    <p class="text-red-500 text-sm mt-1 hidden" id="errorName">Name is required</p>
+  </div>
+
+  <div class="flex flex-col">
+    <label class="text-sm text-gray-300 mb-2 font-medium">Phone no *</label>
+<input
+  id="contactPhone"
+  type="text"
+  placeholder="Your phone number"
+  maxlength="10"
+  inputmode="numeric"
+  pattern="\d{10}"
+  class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+/>
+<p class="text-red-500 text-sm mt-1 hidden" id="errorPhone">Phone number is required</p>
+  </div>
+
+  <div class="flex flex-col md:col-span-2">
+    <label class="text-sm text-gray-300 mb-2 font-medium">Email *</label>
+    <input id="contactEmail" type="email" placeholder="your@email.com"
+           class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition">
+    <p class="text-red-500 text-sm mt-1 hidden" id="errorEmail">Valid email is required</p>
+  </div>
+
+  <div class="flex flex-col md:col-span-2">
+    <label class="text-sm text-gray-300 mb-2 font-medium">Message *</label>
+    <textarea id="contactMessage" rows="4"
+              class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+              placeholder="Tell us about your project..."></textarea>
+    <p class="text-red-500 text-sm mt-1 hidden" id="errorMessage">Message is required</p>
+  </div>
+
+  <div class="md:col-span-2">
+    <button type="submit"
+            class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-4 rounded-xl transition shadow-lg shadow-purple-500/20">
+      Submit & Our Experts Will Reach Out Soon
+    </button>
+  </div>
+</form>
+<div id="successBox" style="display:none;"></div>
+
+         </div>
+
+                <div class="space-y-6" data-aos="fade-left">
+                    <div class="glass-card px-4 py-6 rounded-2xl flex items-center space-x-4 border-l-2 border-purple-500 -ml-2">
+                        <div class="w-12 h-12 bg-purple-500/20 flex items-center justify-center rounded-xl text-purple-400">
+                            <i class="far fa-envelope text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-yellow-400 font-bold">Email</h4>
+                            <p class="text-white-400 text-sm">info@saiux.com</p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl flex items-center space-x-4 border-l-4 border-blue-500">
+                        <div class="w-12 h-12 bg-blue-500/20 flex items-center justify-center rounded-xl text-blue-400">
+                            <i class="fas fa-globe text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-pink-400 font-bold">Global Service</h4>
+                            <p class="text-white-400 text-sm">Worldwide Delivery</p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl flex items-center space-x-4 border-l-4 border-cyan-500">
+                        <div class="w-12 h-12 bg-cyan-500/20 flex items-center justify-center rounded-xl text-cyan-400">
+                            <i class="fas fa-map-marker-alt text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-blue-400 font-bold">Headquarters</h4>
+                            <p class="text-white-400 text-sm">India</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <footer class="bg-[#050810] pt-20 pb-10 px-6 md:px-20 border-t border-white/5 mt-20">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            
+            <div class="space-y-6">
+                <div class="flex items-center space-x-2">
+                    <img src="https://image2url.com/r2/default/images/1768672340155-0a1b4f87-0e9c-41f5-a16a-b53c7d9ea267.png" alt="Saiux Logo" class="w-10 h-10"> <span class="text-2xl font-bold text-white">Saiux Tech</span>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed max-w-xs">
+                    It is a long established fact that from will be distracted by the readable from when looking.
+                </p>
+                <!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p6v9nOe2..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<div class="flex space-x-5 text-gray-500 text-xl">
+    <a href="https://facebook.com" target="_blank" class="hover:text-blue-600 transition"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.instagram.com/saiux9/" target="_blank" class="hover:text-pink-500 transition"><i class="fab fa-instagram"></i></a>
+    <a href="https://x.com/SaiuxPvt_ltd" target="_blank" class="hover:text-sky-400 transition"><i class="fab fa-twitter"></i></a>
+    <a href="https://linkedin.com" target="_blank" class="hover:text-blue-700 transition"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://youtube.com" target="_blank" class="hover:text-red-600 transition"><i class="fab fa-youtube"></i></a>
+</div>
+
+            </div>
+
+            <div>
+                <h4 class="text-xl font-bold mb-6">Pages</h4>
+                <ul class="space-y-4 text-gray-400 text-sm">
+                    <li><a href="#" class="hover:text-white transition">Home</a></li>
+                    <li><a href="#about" class="hover:text-white transition">About Us</a></li>
+                    <li><a href="#services" class="hover:text-white transition">Features</a></li>
+                    
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-xl font-bold mb-6">Others Pages</h4>
+                <ul class="space-y-4 text-gray-400 text-sm">
+                    <li><a href="https://saas.saiux.com/ott/pp" class="hover:text-white transition">Privacy Policy</a></li>
+                    <li><a href="https://saas.saiux.com/ott/c" class="hover:text-white transition">Terms & Conditions</a></li>
+                    <li><a href="https://saas.saiux.com/ott/rp" class="hover:text-white transition">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="mt-8 border-t border-white/5 pt-4 flex justify-center">
+    <a href="admin-login.html" class="text-gray-600 hover:text-blue-400 text-xs transition uppercase tracking-widest">
+        🔒 Admin Access
+    </a>
+</div>
+
+</footer>
+<style>
+/* =====================================
+   GLASS CARD – COLOR ONLY ON HOVER
+===================================== */
+
+.glass-card {
+  position: relative;
+
+  /* Pure transparent glass (NO color) */
+  background: rgba(255, 255, 255, 0.035);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: inherit;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 10px 30px rgba(0,0,0,0.35);
+
+  transition:
+    background 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.25s ease;
+
+  overflow: hidden;
+}
+
+/* 🔥 COLOR APPEARS ONLY ON HOVER */
+.glass-card:hover {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,182,193,0.18),
+      rgba(99,102,241,0.18),
+      rgba(168,85,247,0.18)
+    );
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 18px 45px rgba(0,0,0,0.6);
+}
+</style>
+
+
+<script>
+/* =================================
+   SAIUX-STYLE TRUE 360° GLASS TILT
+================================= */
+
+document.querySelectorAll(".glass-card").forEach(card => {
+  let rect;
+
+  card.addEventListener("mouseenter", () => {
+    rect = card.getBoundingClientRect();
+    card.style.transition = "transform 0.1s ease";
+  });
+
+  card.addEventListener("mousemove", e => {
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const midX = rect.width / 2;
+    const midY = rect.height / 2;
+
+    // VERY SUBTLE ROTATION (Saiux level)
+    const rotateY = ((x - midX) / midX) * 8;
+    const rotateX = -((y - midY) / midY) * 8;
+
+    card.style.transform = `
+      perspective(1200px)
+      rotateX(${rotateX}deg)
+      rotateY(${rotateY}deg)
+      scale(1.03)
+    `;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transition = "transform 0.35s ease";
+    card.style.transform = `
+      perspective(1200px)
+      rotateX(0deg)
+      rotateY(0deg)
+      scale(1)
+    `;
+  });
+});
+</script>
+
+
+       <script>
+// API URL - Change this after deploying backend to Render
+const API_URL = window.location.hostname === 'localhost' 
+  ? 'http://localhost:5000' 
+  : 'https://YOUR-BACKEND-NAME.onrender.com';  // Replace after deployment
+
+const contactForm = document.getElementById("contactForm");
+
+contactForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // Get field values
+  const name = document.getElementById("contactName").value.trim();
+  const email = document.getElementById("contactEmail").value.trim();
+  const message = document.getElementById("contactMessage").value.trim();
+  const phone = document.getElementById("contactPhone").value.trim();
+  const btn = contactForm.querySelector("button");
+
+  // Hide all error messages first
+  document.getElementById("errorName").classList.add("hidden");
+  document.getElementById("errorEmail").classList.add("hidden");
+  document.getElementById("errorPhone").classList.add("hidden");
+  document.getElementById("errorMessage").classList.add("hidden");
+
+  // Validation flags
+  let valid = true;
+
+// Name validation
+if (!name) {
+  document.getElementById("errorName").classList.remove("hidden");
+  valid = false;
+} else {
+  document.getElementById("errorName").classList.add("hidden");
+}
+
+// Email validation
+if (!email || !/\S+@\S+\.\S+/.test(email)) {
+  document.getElementById("errorEmail").classList.remove("hidden");
+  valid = false;
+} else {
+  document.getElementById("errorEmail").classList.add("hidden");
+}
+
+// Phone validation (10 digits)
+if (!/^\d{10}$/.test(phone)) {
+  document.getElementById("errorPhone").classList.remove("hidden");
+  valid = false;
+} else {
+  document.getElementById("errorPhone").classList.add("hidden");
+}
+document.getElementById("contactPhone").addEventListener("input", function () {
+  this.value = this.value.replace(/\D/g, "").slice(0, 10);
+});
+
+// Message validation
+if (!message) {
+  document.getElementById("errorMessage").classList.remove("hidden");
+  valid = false;
+} else {
+  document.getElementById("errorMessage").classList.add("hidden");
+}
+
+// Stop submission if invalid
+if (!valid) return;
+
+
+  // Send data
+  btn.innerText = "Sending...";
+
+  const data = { name, phone, email, message };
+
+  try {
+    const res = await fetch(`${API_URL}/api/contact`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    const result = await res.json();
+
+    if (res.ok) {
+  contactForm.reset();
+
+  const successBox = document.getElementById("successBox");
+
+  // Fallback safety (in case successBox is missing)
+  if (!successBox) {
+    alert(
+      "✅ Thank you for contacting SAIUX.\n\n" +
+      "Please book your appointment slot. You will be redirected in 1 minute."
+    );
+
+    setTimeout(() => {
+      window.location.href =
+        "https://login.saiux.com/u/75029/standard-calender";
+    }, 60000);
+
+    return;
+  }
+
+  successBox.style.display = "block";
+  successBox.innerHTML = `
+    <div style="
+      background:#e6fffa;
+      border:1px solid #38b2ac;
+      padding:20px;
+      border-radius:8px;
+      text-align:center;
+      margin-top:20px;
+    ">
+      <h3 style="color:#065f46;">✅ Thank you for contacting SAIUX</h3>
+
+      <p>
+        Please book your appointment slot.  
+        Our team will reach out to you shortly.
+      </p>
+
+      <a href="https://login.saiux.com/u/75029/standard-calender" target="_blank">
+        <button style="
+          margin-top:15px;
+          padding:10px 20px;
+          background:#007bff;
+          color:#fff;
+          border:none;
+          border-radius:5px;
+          cursor:pointer;
+        ">
+          📅 Book Appointment
+        </button>
+      </a>
+
+      <p style="margin-top:10px; font-size:12px; color:#555;">
+        You will be redirected automatically in 1 minute.
+      </p>
+    </div>
+  `;
+
+  // ⏱ Auto redirect after 1 minute
+  setTimeout(() => {
+    window.location.href =
+      "https://login.saiux.com/u/75029/standard-calender";
+  }, 60000);
+
+} else {
+  alert("❌ Failed to send message: " + (result.message || ""));
+}
+
+  } catch (err) {
+    alert("❌ Backend server not running");
+    console.error(err);
+  }
+
+  btn.innerText = "Submit & Our Experts Will Reach Out Soon";
+});
+</script>
+
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        // Toggle Views
+        function toggleAdmin() {
+            document.getElementById('mainContent').classList.toggle('hidden');
+            document.getElementById('adminDashboard').classList.toggle('hidden');
+        }
+
+        // --- Background Animation ---
+        const canvas = document.getElementById('network-canvas');
+        const ctx = canvas.getContext('2d');
+        let points = [];
+        function init() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            points = Array.from({length: 90}, () => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5
+            }));
+        }
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+           ctx.fillStyle = '#93c5fd';
+           ctx.strokeStyle = 'rgba(59, 130, 246, 0.2)';
+        
+
+       
+ctx.shadowColor = 'rgba(96, 165, 250, 0.9)';
+            points.forEach((p, i) => {
+                p.x += p.vx; p.y += p.vy;
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI * 2); ctx.fill();
+                for (let j = i + 1; j < points.length; j++) {
+                    const dist = Math.hypot(p.x - points[j].x, p.y - points[j].y);
+                    if (dist < 150) {
+                        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(points[j].x, points[j].y); ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(draw);
+        }
+        window.addEventListener('resize', init);
+        init(); draw();
+
+       
+</script>
+
+</body>
+
+
+</html>
+
