@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="api-base-url" content="https://api.saiux.com" />
   <title>SAIUX Admin Login</title>
 
   <style>
@@ -48,10 +49,13 @@
 <p id="msg"></p>
 
 <script>
-  // API URL - automatically switches between local and production
-  const API_URL = window.location.hostname === 'localhost' 
-    ? 'http://localhost:5000' 
-    : 'https://YOUR-BACKEND-NAME.onrender.com';  // Replace after deployment
+  // API URL - local for dev, configurable in production
+  const API_URL =
+    window.location.hostname === "localhost"
+      ? "http://localhost:5000"
+      : (window.__API_BASE_URL__ ||
+        document.querySelector('meta[name="api-base-url"]')?.content ||
+        "https://api.saiux.com");
 
   async function login() {
     const emailInput = document.getElementById("email");

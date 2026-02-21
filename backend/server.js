@@ -5,35 +5,72 @@ const connectDB = require("./config/db");
 
 const app = express();
 
-// Middleware - CORS configured for production
-const allowedOrigins = [
+// Middleware - CORS configured for production and local development
+const normalizeOrigin = (value) => {
+  if (!value) return null;
+  try {
+    return new URL(value).origin;
+  } catch {
+    return null;
+  }
+};
+
+const localOrigins = [
   "http://localhost:3000",
   "http://localhost:5500",
   "http://127.0.0.1:5500",
-  "https://abc.com",
-  "https://www.abc.com",
+];
+
+const envOrigins = [
   process.env.FRONTEND_URL,
-].filter(Boolean);
+  ...(process.env.FRONTEND_URLS || "").split(","),
+]
+  .map((origin) => normalizeOrigin(origin && origin.trim()))
+  .filter(Boolean);
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin (mobile apps, curl, etc.)
-      if (!origin) return callback(null, true);
+const allowedOrigins = new Set([
+  ...localOrigins.map(normalizeOrigin).filter(Boolean),
+  ...envOrigins,
+]);
 
-      // Check if origin is in allowed list or is a render.com subdomain
-      if (allowedOrigins.includes(origin) || origin.endsWith(".onrender.com")) {
-        return callback(null, true);
-      }
+const isAllowedHost = (origin) => {
+  try {
+    const hostname = new URL(origin).hostname;
+    return (
+      hostname === "saiux.com" ||
+      hostname.endsWith(".saiux.com") ||
+      hostname.endsWith(".onrender.com") ||
+      hostname.endsWith(".vercel.app") ||
+      hostname.endsWith(".netlify.app")
+    );
+  } catch {
+    return false;
+  }
+};
 
-      console.log("CORS blocked origin:", origin);
-      return callback(null, true); // Allow all for now - remove this line to enforce strict CORS
-    },
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  }),
-);
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow requests with no origin (mobile apps, curl, server-to-server)
+    if (!origin) return callback(null, true);
+
+    const normalizedOrigin = normalizeOrigin(origin);
+    if (
+      normalizedOrigin &&
+      (allowedOrigins.has(normalizedOrigin) || isAllowedHost(normalizedOrigin))
+    ) {
+      return callback(null, true);
+    }
+
+    console.log("CORS blocked origin:", origin);
+    return callback(null, false);
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="api-base-url" content="https://api.saiux.com" />
   <title>SAIUX Admin Dashboard</title>
 
   <style>
@@ -100,10 +101,13 @@
 
 <script>
   /* ================= CONFIG ================= */
-  // API URL - automatically switches between local and production
-  const API_URL = window.location.hostname === 'localhost' 
-    ? 'http://localhost:5000' 
-    : 'https://YOUR-BACKEND-NAME.onrender.com';  // Replace after deployment
+  // API URL - local for dev, configurable in production
+  const API_URL =
+    window.location.hostname === "localhost"
+      ? "http://localhost:5000"
+      : (window.__API_BASE_URL__ ||
+        document.querySelector('meta[name="api-base-url"]')?.content ||
+        "https://api.saiux.com");
   const token = localStorage.getItem("adminToken");
 
   /* ============= LOAD CONTACTS ============== */
